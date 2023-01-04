@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 struct PlayerInfo
 {
@@ -19,7 +20,7 @@ struct PlayerInfo
 }
 public class Player : MonoBehaviour
 {
-    private PlayerInfo Info = new PlayerInfo("Player", 0);
+    private PlayerInfo Info;
     
     public string Name => Info.Name;
     public int Score => Info.Score;
@@ -28,6 +29,14 @@ public class Player : MonoBehaviour
 
     public bool isFinished = false;
     //public int FinishPlace = -1;
+    
+    [SerializeField]private TextMeshProUGUI nameLabel;
+
+    public void Initialize(string name = "Player", int score = 0)
+    {
+        nameLabel.text = name;
+        Info = new PlayerInfo(name, score);
+    }
     
     private List<Cell> cells => Cell.AllCells;
     public void Move(int score)

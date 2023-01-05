@@ -60,23 +60,15 @@ public class GameplayManager : MonoBehaviour
         var i = round % allPlayers.Count;
         var pl = allPlayers[i];
         
-        if (pl.currentCell + score >= cells.Count)
-            score = cells.Count - pl.currentCell - 1;
-        else if (pl.currentCell + score < 0 )
-            score = - pl.currentCell;
-        
         pl.Move(score);
         
-        /*if (cells[pl.Score].GetStatus == CellStatus.Positive)
+        if (cells[pl.currentCell].GetStatus == CellStatus.Positive)
             round--;
-        else if (cells[pl.Score].GetStatus == CellStatus.Negative)
-        {
-            if (pl.Score + score < 0 ) score = - pl.Score;
-           // pl.Move(-3);   
-        }*/
+        else if (cells[pl.currentCell].GetStatus == CellStatus.Negative)
+            pl.Move(-3);
         
         round++;
-
+        
         if (allPlayers.All(x => x.isFinished))
             FinishGame.Invoke(FinishList);
     }

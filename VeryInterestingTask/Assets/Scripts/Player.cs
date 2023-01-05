@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
     public int PenaltyPoints => Info.PenaltyPoints;
 
     public bool isFinished = false;
-    //public int FinishPlace = -1;
     
     [SerializeField]private TextMeshProUGUI nameLabel;
     [SerializeField]private int speed = 1;
-
+    private bool isMoving = false;
+    
     public void Initialize(string name = "Player")
     {
         nameLabel.text = name;
@@ -42,29 +42,40 @@ public class Player : MonoBehaviour
     private List<Cell> cells => Cell.AllCells;
     public void Move(int score)
     {
-        StopAllCoroutines();
-        var c = cells[score + currentCell];
-        
         cells[currentCell].RemovePlayer();
+
+        Info.Score = score + currentCell;
+        
+        isFinished = currentCell >= cells.Count - 1;
+
+        Info.Score = Math.Clamp(currentCell, 0, cells.Count - 1);
+        
+        var c = cells[currentCell];
         
         StartCoroutine(OneMove(c));
         
         if (c.GetStatus == CellStatus.Positive) Info.BonusPoints++;
         else if (c.GetStatus == CellStatus.Negative) Info.PenaltyPoints++;
-        
-        Info.Score = score + currentCell;
     }
 
     IEnumerator OneMove(Cell cell)
     {
+        yield return new WaitWhile(() => isMoving);
+
+        isMoving = true;
+        
         var target = cell.position;
         var dir = (target - transform.position).normalized;
         while ((target - transform.position).magnitude > 0.05)
         {
-            print(transform.position);
             transform.Translate(dir * Time.deltaTime * speed);
             yield return null;
         }
+        
         transform.SetParent(cell.transform);
+        
+        cell.AddPlayer();
+
+        isMoving = false;
     }
 }

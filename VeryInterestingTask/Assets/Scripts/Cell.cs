@@ -21,11 +21,11 @@ public class Cell : MonoBehaviour
 
     private int countPlayers;
 
-    public Transform position => stayPoints[countPlayers%stayPoints.Count];
+    public Vector3 position => stayPoints[countPlayers%stayPoints.Count].position;
 
     void Start()
     {
-        var sp = transform.GetChild(1);
+        var sp = transform.GetChild(0);
         for (int i = 0; i < sp.childCount; i++)
             stayPoints.Add(sp.GetChild(i));
     }

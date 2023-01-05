@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     //public int FinishPlace = -1;
     
     [SerializeField]private TextMeshProUGUI nameLabel;
+    [SerializeField]private int speed = 1;
 
     public void Initialize(string name = "Player", int score = 0)
     {
@@ -42,6 +43,27 @@ public class Player : MonoBehaviour
     public void Move(int score)
     {
         StopAllCoroutines();
-        throw new NotImplementedException();
+        var c = cells[score + Score];
+        
+        cells[score].RemovePlayer();
+        
+        StartCoroutine(OneMove(c));
+        
+        if (c.GetStatus == CellStatus.Positive) Info.BonusPoints++;
+        else if (c.GetStatus == CellStatus.Negative) Info.PenaltyPoints++;
+        
+        Info.Score = score + Score;
+    }
+
+    IEnumerator OneMove(Cell cell)
+    {
+        var target = cell.position;
+        var dir = (target - transform.position).normalized;
+        while ((target - transform.position).magnitude > 0.5)
+        {
+            transform.Translate(dir * Time.deltaTime * speed);
+            yield return null;
+        }
+        transform.SetParent(cell.transform);
     }
 }

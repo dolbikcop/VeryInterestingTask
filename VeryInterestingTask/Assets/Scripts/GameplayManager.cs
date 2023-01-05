@@ -11,7 +11,9 @@ using UnityEngine.Events;
 public class FinishEvent : UnityEvent<List<Player>> {}
 public class GameplayManager : MonoBehaviour
 {
-    [SerializeField] private List<Player> allPlayers;
+    private List<Player> allPlayers = new List<Player>();
+    private List<Cell> cells => Cell.AllCells;
+
     [SerializeField] private GameObject playerPrefab;
     
     private int round = 0;
@@ -24,7 +26,7 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        InitializeGame(allPlayers.Count);
+        InitializeGame(playerCount);
     }
 
     public void InitializeGame(int countPlayer)
@@ -41,9 +43,10 @@ public class GameplayManager : MonoBehaviour
 
         for (int i = 0; i < countPlayer; i++)
         {
-            var pl = Instantiate(playerPrefab, Cell.AllCells[0].position)
+            var pl = Instantiate(playerPrefab, cells[0].position, Quaternion.identity)
                 .GetComponent<Player>();
-            
+            cells[0].AddPlayer();
+            pl.transform.SetParent(cells[0].transform);
             //initialize fiulds in Player
             pl.Initialize(i.ToString());
             allPlayers.Add(pl);
@@ -52,8 +55,24 @@ public class GameplayManager : MonoBehaviour
 
     public void MakeMove(int score)
     {
-        var pl = allPlayers.Where(x=>!x.isFinished).ToList()[round % playerCount];
+        var i = round % playerCount;
+        var pl = allPlayers.Where(x=>!x.isFinished).ToList()[i];
+
+        if (pl.Score + score >= cells.Count)
+            score = cells.Count - pl.Score - 1;
+        else if (pl.Score + score < 0 )
+            score = - pl.Score;
+        
         pl.Move(score);
+        
+        if (cells[pl.Score].GetStatus == CellStatus.Positive)
+            round--;
+        else if (cells[pl.Score].GetStatus == CellStatus.Negative)
+        {
+            if (pl.Score + score < 0 ) score = - pl.Score;
+            pl.Move(-3);   
+        }
+        
         round++;
 
         if (allPlayers.All(x => x.isFinished))

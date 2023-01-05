@@ -13,6 +13,7 @@ public class DiceSystem : MonoBehaviour
     private Rigidbody rb => dice.GetComponent<Rigidbody>();
 
     private int diceResult;
+    private Vector3 startPosition;
     private bool isMakeTurn;
     void Update()
     {
@@ -22,20 +23,25 @@ public class DiceSystem : MonoBehaviour
         }
     }
 
+    private void Start() => startPosition = dice.transform.position;
+
     void ThrowDice()
     {
-        diceResult = 0;
+        if (!isMakeTurn)
+        {
+            diceResult = 0;
 
-        var dirX = Random.Range(0, 500);
-        var dirY = Random.Range(0, 500);
-        var dirZ = Random.Range(0, 500);
+            var dirX = Random.Range(0, 500);
+            var dirY = Random.Range(0, 500);
+            var dirZ = Random.Range(0, 500);
         
-        dice.transform.SetPositionAndRotation(new Vector3(0, 5, 0), 
-            Quaternion.identity);
+            dice.transform.SetPositionAndRotation(startPosition, 
+                Quaternion.identity);
         
-        rb.AddForce(transform.up * 500);
-        rb.AddTorque(dirX, dirY, dirZ);
-        isMakeTurn = true;
+            rb.AddForce(transform.up * 500);
+            rb.AddTorque(dirX, dirY, dirZ);
+            isMakeTurn = true;   
+        }
     }
 
     private void OnTriggerStay(Collider other)

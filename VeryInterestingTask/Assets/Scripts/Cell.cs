@@ -19,7 +19,7 @@ public class Cell : MonoBehaviour
 
     private List<Transform> stayPoints = new();
 
-    private int countPlayers;
+    private int countPlayers = 0;
 
     public Vector3 position => stayPoints[countPlayers%stayPoints.Count].position;
 

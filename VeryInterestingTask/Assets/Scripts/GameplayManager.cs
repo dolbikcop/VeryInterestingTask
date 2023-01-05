@@ -55,23 +55,25 @@ public class GameplayManager : MonoBehaviour
 
     public void MakeMove(int score)
     {
-        var i = round % playerCount;
-        var pl = allPlayers.Where(x=>!x.isFinished).ToList()[i];
+        allPlayers = allPlayers.Where(x=>!x.isFinished).ToList();
 
-        if (pl.Score + score >= cells.Count)
-            score = cells.Count - pl.Score - 1;
-        else if (pl.Score + score < 0 )
-            score = - pl.Score;
+        var i = round % allPlayers.Count;
+        var pl = allPlayers[i];
+        
+        if (pl.currentCell + score >= cells.Count)
+            score = cells.Count - pl.currentCell - 1;
+        else if (pl.currentCell + score < 0 )
+            score = - pl.currentCell;
         
         pl.Move(score);
         
-        if (cells[pl.Score].GetStatus == CellStatus.Positive)
+        /*if (cells[pl.Score].GetStatus == CellStatus.Positive)
             round--;
         else if (cells[pl.Score].GetStatus == CellStatus.Negative)
         {
             if (pl.Score + score < 0 ) score = - pl.Score;
-            pl.Move(-3);   
-        }
+           // pl.Move(-3);   
+        }*/
         
         round++;
 

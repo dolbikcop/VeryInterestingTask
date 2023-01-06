@@ -45,14 +45,17 @@ public class Player : MonoBehaviour
         cells[currentCell].RemovePlayer();
 
         Info.Score = score + currentCell;
-        
-        isFinished = currentCell >= cells.Count - 1;
 
         Info.Score = Math.Clamp(currentCell, 0, cells.Count - 1);
-        
+
         var c = cells[currentCell];
         
-        StartCoroutine(OneMove(c));
+        c.AddPlayer();
+
+        isFinished = currentCell == cells.Count - 1;
+        
+        if (!isMoving)
+            StartCoroutine(OneMove(c));
         
         if (c.GetStatus == CellStatus.Positive) Info.BonusPoints++;
         else if (c.GetStatus == CellStatus.Negative) Info.PenaltyPoints++;
@@ -69,13 +72,12 @@ public class Player : MonoBehaviour
         while ((target - transform.position).magnitude > 0.05)
         {
             transform.Translate(dir * Time.deltaTime * speed);
+            print(dir);
             yield return null;
         }
         
         transform.SetParent(cell.transform);
         
-        cell.AddPlayer();
-
         isMoving = false;
     }
 }

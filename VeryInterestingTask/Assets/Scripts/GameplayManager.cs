@@ -45,7 +45,9 @@ public class GameplayManager : MonoBehaviour
         {
             var pl = Instantiate(playerPrefab, cells[0].position, Quaternion.identity)
                 .GetComponent<Player>();
+            
             cells[0].AddPlayer();
+            
             pl.transform.SetParent(cells[0].transform);
             //initialize fiulds in Player
             pl.Initialize(i.ToString());

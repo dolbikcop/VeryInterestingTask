@@ -242,6 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5951500367933537411}
   - component: {fileID: 6603087376565772715}
+  - component: {fileID: 3277928175548558499}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -280,6 +281,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFinished: 0
   nameLabel: {fileID: 5489643110672212932}
+  speed: 5
+--- !u!195 &3277928175548558499
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2964979789547341691}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5771701423326624810
 GameObject:
   m_ObjectHideFlags: 0

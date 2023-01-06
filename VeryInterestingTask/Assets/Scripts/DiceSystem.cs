@@ -75,11 +75,7 @@ public class DiceSystem : MonoBehaviour
             if (isMakeTurn && diceResult != 0)
             {
                 isMakeTurn = false;
-                
-                //
-                diceResult = 6;
-                //
-                
+
                 print(diceResult);
                 StartTurn.Invoke(diceResult);
             }

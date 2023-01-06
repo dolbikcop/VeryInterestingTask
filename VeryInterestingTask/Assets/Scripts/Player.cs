@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
+
 struct PlayerInfo
 {
     public string Name;
@@ -30,54 +32,55 @@ public class Player : MonoBehaviour
     public bool isFinished = false;
     
     [SerializeField]private TextMeshProUGUI nameLabel;
-    [SerializeField]private int speed = 1;
-    private bool isMoving = false;
     
     public void Initialize(string name = "Player")
     {
         nameLabel.text = name;
         Info = new PlayerInfo(name);
+        NMAgent = GetComponent<NavMeshAgent>();
     }
     
     private List<Cell> cells => Cell.AllCells;
     public void Move(int score)
     {
-        cells[currentCell].RemovePlayer();
-
         Info.Score = score + currentCell;
 
         Info.Score = Math.Clamp(currentCell, 0, cells.Count - 1);
 
         var c = cells[currentCell];
         
-        c.AddPlayer();
-
-        isFinished = currentCell == cells.Count - 1;
+        cellToMove.Enqueue(c);
         
+        isFinished = currentCell == cells.Count - 1;
+
         if (!isMoving)
-            StartCoroutine(OneMove(c));
+        {
+            StopAllCoroutines();
+            StartCoroutine(OneMove());   
+        }
         
         if (c.GetStatus == CellStatus.Positive) Info.BonusPoints++;
         else if (c.GetStatus == CellStatus.Negative) Info.PenaltyPoints++;
     }
 
-    IEnumerator OneMove(Cell cell)
-    {
-        yield return new WaitWhile(() => isMoving);
+    private Queue<Cell> cellToMove = new Queue<Cell>();
+    private bool isMoving = false;
+    private NavMeshAgent NMAgent;
 
+    IEnumerator OneMove()
+    {
         isMoving = true;
-        
-        var target = cell.position;
-        var dir = (target - transform.position).normalized;
-        while ((target - transform.position).magnitude > 0.05)
+        while (cellToMove.Count != 0)
         {
-            transform.Translate(dir * Time.deltaTime * speed);
-            print(dir);
-            yield return null;
+            var cell = cellToMove.Dequeue();
+
+            NMAgent.SetDestination(cell.position);
+            
+            yield return new WaitWhile(() => (cell.position - transform.position).magnitude > 0.05f);
+            
+            cell.AddPlayer();
+            transform.SetParent(cell.transform);
         }
-        
-        transform.SetParent(cell.transform);
-        
         isMoving = false;
     }
 }

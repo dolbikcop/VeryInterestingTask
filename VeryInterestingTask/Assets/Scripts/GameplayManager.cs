@@ -49,7 +49,7 @@ public class GameplayManager : MonoBehaviour
             cells[0].AddPlayer();
             
             pl.transform.SetParent(cells[0].transform);
-            //initialize fiulds in Player
+            
             pl.Initialize(i.ToString());
             allPlayers.Add(pl);
         }

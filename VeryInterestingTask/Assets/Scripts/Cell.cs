@@ -31,5 +31,4 @@ public class Cell : MonoBehaviour
     }
 
     public void AddPlayer() => countPlayers++;
-    public void RemovePlayer() => countPlayers--;
 }

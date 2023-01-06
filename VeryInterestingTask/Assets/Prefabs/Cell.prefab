@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3648992566374557235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StayPoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3278789247720486572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.007, y: 0.003, z: 0.007}
+  m_LocalPosition: {x: -0.004, y: 0.003, z: 0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 485159817961427459}
   - component: {fileID: 2404734190348314313}
   - component: {fileID: 3732333817158026465}
-  m_Layer: 0
+  - component: {fileID: 107389656190782774}
+  m_Layer: 7
   m_Name: Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +132,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   labelText: {fileID: 698604854959119655}
   cellStatus: 0
+--- !u!114 &107389656190782774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4206266881601767196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0.3, z: -0.0070061088}
+  m_EndPoint: {x: 2.0252652, y: 0.3, z: 2.6623583}
+  m_Width: 3.4365535
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &4238318907693948721
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2533746431728658973}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StayPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4238318907693948721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.007, y: 0.003, z: 0.007}
+  m_LocalPosition: {x: 0.004, y: 0.003, z: 0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -174,7 +195,7 @@ GameObject:
   - component: {fileID: 5429789353807845824}
   - component: {fileID: 7057120073296107205}
   - component: {fileID: 1923078192795622370}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7284687900788636482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StayPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7327339888082923907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.007, y: 0.003, z: -0.007}
+  m_LocalPosition: {x: -0.004, y: 0.003, z: -0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -303,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9109245979803703761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StayPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7818178678813610884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.007, y: 0.003, z: -0.007}
+  m_LocalPosition: {x: 0.004, y: 0.003, z: -0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -336,7 +357,7 @@ GameObject:
   - component: {fileID: 6153158242737673367}
   - component: {fileID: 1464580684690826428}
   - component: {fileID: 698604854959119655}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2063505701895846261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StayPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}

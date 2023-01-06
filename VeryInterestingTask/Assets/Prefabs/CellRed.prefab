@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5682946950938241319}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: sPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8874109753676751245}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: sPoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,8 @@ GameObject:
   - component: {fileID: 816153145342816952}
   - component: {fileID: 3222177923082028658}
   - component: {fileID: 4477639515413570650}
-  m_Layer: 0
+  - component: {fileID: -5432512828554477876}
+  m_Layer: 7
   m_Name: CellRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,6 +172,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   labelText: {fileID: 313525554310036892}
   cellStatus: 1
+--- !u!114 &-5432512828554477876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014824721136134055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0.3, z: -0.0070061088}
+  m_EndPoint: {x: 2.0252652, y: 0.3, z: 2.6623583}
+  m_Width: 3.4365535
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &4920671455583172193
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4554325865995863094}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: StayPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5245976910575954430}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: sPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +280,7 @@ GameObject:
   - component: {fileID: 5094222195479132539}
   - component: {fileID: 7784403715666769534}
   - component: {fileID: 1682105266867911513}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2333042469368417369}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: sPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +417,7 @@ GameObject:
   - component: {fileID: 6380550005941269548}
   - component: {fileID: 1854094234064159751}
   - component: {fileID: 313525554310036892}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}

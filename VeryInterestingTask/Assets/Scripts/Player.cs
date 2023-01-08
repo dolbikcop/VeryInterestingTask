@@ -76,8 +76,8 @@ public class Player : MonoBehaviour
 
             NMAgent.SetDestination(cell.position);
             
-            yield return new WaitWhile(() => (cell.position - transform.position).magnitude > 0.05f);
-            
+            yield return new WaitWhile(() => (cell.position - transform.position).magnitude > 0.5f);
+            print(cell);
             cell.AddPlayer();
             transform.SetParent(cell.transform);
         }

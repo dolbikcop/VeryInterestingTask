@@ -67,7 +67,10 @@ public class GameplayManager : MonoBehaviour
         if (cells[pl.currentCell].GetStatus == CellStatus.Positive)
             round--;
         else if (cells[pl.currentCell].GetStatus == CellStatus.Negative)
-            pl.Move(-3);
+        {
+            MakeMove(-3);
+            round--;
+        }
         
         round++;
         

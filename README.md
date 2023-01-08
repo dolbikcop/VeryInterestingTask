@@ -10,4 +10,4 @@
 ![Alt text](screenshots/3.jpeg)
 ![Alt text](screenshots/4.jpeg)
 
-### В ветке _[build]()_ находится сборка игры под Windows.
+### В ветке _[build](https://github.com/dolbikcop/VeryInterestingTask/tree/build)_ находится сборка игры под Windows.

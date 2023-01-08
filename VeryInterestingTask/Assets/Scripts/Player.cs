@@ -33,20 +33,17 @@ public class Player : MonoBehaviour
     public int MoveCount => Info.MoveCount;
 
     public bool isFinished = false;
-    
-    [SerializeField]private TextMeshProUGUI nameLabel;
-    
+
     public void Initialize(string name = "Player")
     {
-        nameLabel.text = name;
         Info = new PlayerInfo(name);
         NMAgent = GetComponent<NavMeshAgent>();
     }
-    
+    public void SetName(string name) => Info.Name = name;
     private List<Cell> cells => Cell.AllCells;
     public void Move(int score)
     {
-        Info.MoveCount++;
+        if (score > 0) Info.MoveCount++;
         
         Info.Score = score + currentCell;
 
@@ -87,10 +84,5 @@ public class Player : MonoBehaviour
             transform.SetParent(cell.transform);
         }
         isMoving = false;
-    }
-
-    public void EnterName(string name)
-    {
-        Info.Name = name;
     }
 }

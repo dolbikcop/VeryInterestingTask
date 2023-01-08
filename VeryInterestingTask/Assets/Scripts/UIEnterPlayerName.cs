@@ -20,7 +20,7 @@ public class UIEnterPlayerName : MonoBehaviour
     {
         for (int i = 0; i < game.allPlayers.Count; i++)
         {
-            game.allPlayers[i].EnterName(names[i].text);
+            game.allPlayers[i].SetName(names[i].text);
             print(names[i].text);            
         }
     }

@@ -29,6 +29,7 @@ public class GameplayManager : MonoBehaviour
 
     public void InitializeGame(int countPlayer)
     {
+        // добавляю ячейкам имена
         for (int i = 0; i < transform.childCount; i++)
         {
             Cell cell;
@@ -38,6 +39,7 @@ public class GameplayManager : MonoBehaviour
                 cell.labelText.text = i.ToString();
             }
         }
+        // инициализирую игроков на ячейке 0
 
         for (int i = 0; i < countPlayer; i++)
         {

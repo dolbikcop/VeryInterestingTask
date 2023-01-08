@@ -11,6 +11,7 @@ struct PlayerInfo
     public int Score;
     public int BonusPoints;
     public int PenaltyPoints;
+    public int MoveCount;
 
     public PlayerInfo(string name)
     {
@@ -18,6 +19,7 @@ struct PlayerInfo
         Score = 0;
         BonusPoints = 0;
         PenaltyPoints = 0;
+        MoveCount = 0;
     }
 }
 public class Player : MonoBehaviour
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     public int currentCell => Info.Score;
     public int BonusPoints => Info.BonusPoints;
     public int PenaltyPoints => Info.PenaltyPoints;
+    public int MoveCount => Info.MoveCount;
 
     public bool isFinished = false;
     
@@ -43,6 +46,8 @@ public class Player : MonoBehaviour
     private List<Cell> cells => Cell.AllCells;
     public void Move(int score)
     {
+        Info.MoveCount++;
+        
         Info.Score = score + currentCell;
 
         Info.Score = Math.Clamp(currentCell, 0, cells.Count - 1);
@@ -64,7 +69,7 @@ public class Player : MonoBehaviour
     }
 
     private Queue<Cell> cellToMove = new Queue<Cell>();
-    private bool isMoving = false;
+    public bool isMoving = false;
     private NavMeshAgent NMAgent;
 
     IEnumerator OneMove()
@@ -82,5 +87,10 @@ public class Player : MonoBehaviour
             transform.SetParent(cell.transform);
         }
         isMoving = false;
+    }
+
+    public void EnterName(string name)
+    {
+        Info.Name = name;
     }
 }

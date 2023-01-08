@@ -14,10 +14,13 @@ public class DiceSystem : MonoBehaviour
 
     private int diceResult;
     private Vector3 startPosition;
-    private bool isMakeTurn;
+    public static bool isMakeTurn;
+
+    public static bool CanMakeTurn = true;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && CanMakeTurn)
         {
             ThrowDice();
         }

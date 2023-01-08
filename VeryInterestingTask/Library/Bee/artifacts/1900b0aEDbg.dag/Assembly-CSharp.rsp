@@ -355,6 +355,9 @@
 "Assets/Scripts/DiceSystem.cs"
 "Assets/Scripts/GameplayManager.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/UIEnterPlayerName.cs"
+"Assets/Scripts/UIFinalBoardScript.cs"
+"Assets/Scripts/UIRowScript.cs"
 -langversion:9.0
 
 /deterministic

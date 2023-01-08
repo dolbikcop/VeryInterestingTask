@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,23 +12,20 @@ using UnityEngine.Events;
 public class FinishEvent : UnityEvent<List<Player>> {}
 public class GameplayManager : MonoBehaviour
 {
-    private List<Player> allPlayers = new List<Player>();
+    public List<Player> allPlayers = new List<Player>();
     private List<Cell> cells => Cell.AllCells;
 
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject[] playerPrefab;
     
     private int round = 0;
-
-    public int playerCount;
 
     public List<Player> FinishList;
 
     public FinishEvent FinishGame;
 
-    void Start()
-    {
-        InitializeGame(playerCount);
-    }
+    private void FixedUpdate() =>
+        DiceSystem.CanMakeTurn = !allPlayers.Any(x => x.isMoving)
+                                 && allPlayers.Any(x => !x.isFinished);
 
     public void InitializeGame(int countPlayer)
     {
@@ -43,7 +41,7 @@ public class GameplayManager : MonoBehaviour
 
         for (int i = 0; i < countPlayer; i++)
         {
-            var pl = Instantiate(playerPrefab, cells[0].position, Quaternion.identity)
+            var pl = Instantiate(playerPrefab[i], cells[0].position, Quaternion.identity)
                 .GetComponent<Player>();
             
             cells[0].AddPlayer();
@@ -54,13 +52,12 @@ public class GameplayManager : MonoBehaviour
             allPlayers.Add(pl);
         }
     }
-
     public void MakeMove(int score)
     {
-        allPlayers = allPlayers.Where(x=>!x.isFinished).ToList();
+        var list = allPlayers.Where(x=>!x.isFinished).ToList();
 
-        var i = round % allPlayers.Count;
-        var pl = allPlayers[i];
+        var i = round % list.Count;
+        var pl = list[i];
         
         pl.Move(score);
         
@@ -73,8 +70,11 @@ public class GameplayManager : MonoBehaviour
         }
         
         round++;
-        
+        if (pl.isFinished) FinishList.Add(pl);
+
         if (allPlayers.All(x => x.isFinished))
+        {
             FinishGame.Invoke(FinishList);
+        }
     }
 }
